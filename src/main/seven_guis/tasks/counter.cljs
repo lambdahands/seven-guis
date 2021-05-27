@@ -11,4 +11,3 @@
    [:input {:disabled true :value (:counter @app-state)}]
    [:button {:on-click #(swap! app-state increment-counter)}
     "Count"]])
-
