@@ -1,9 +1,12 @@
 (ns seven-guis.tasks.temperature-converter
-  (:require [reagent.core :as r]
-            [cljs.tools.reader :refer [read-string]]))
+  (:require [reagent.core :as r]))
 
-(defonce state (r/atom {:temperature-converter {:farenheit "32"
-                                                :celcius "0"}}))
+;; State
+
+(defonce db (r/atom {:fahrenheit "32" :celcius "0"}))
+
+;; Parsers
+
 (defn str->number [string]
   (let [num (js/Number string)]
     (when (and (not (js/Number.isNaN num))
@@ -11,42 +14,45 @@
                (number? num))
       num)))
 
-(defn input-edge-case? [input]
-     (or (= "-" input)
-         (re-find #".*e$" input)
-         (re-find #".*e\+$" input)))
+;; Conversion Functions
 
-(defn celcius->farenheit [num]
+(defn celcius->fahrenheit [num]
   (+ 32 (* num (/ 9 5))))
 
-(defn farenheit->celcius [num]
+(defn fahrenheit->celcius [num]
   (* (- num 32) (/ 9 5)))
 
-(defn set-farenheit [db input]
-  (let [num (str->number input)]
-    (cond
-     num (-> db
-           (assoc-in [:temperature-converter :farenheit] input)
-           (assoc-in [:temperature-converter :celcius]
-                     (str (farenheit->celcius num))))
-     (input-edge-case? input)
-     (assoc-in db [:temperature-converter :farenheit] input)
-     :else db)))
+(def conversion-fns
+  {[:fahrenheit :celcius] fahrenheit->celcius
+   [:celcius :fahrenheit] celcius->fahrenheit})
 
-(defn set-celcius [db input]
+;; Validators
+
+(defn input-edge-case? [input]
+  (or (= "-" input)
+      (re-find #".*e$" input)
+      (re-find #".*e\+$" input)
+      (re-find #"^e.*" input)
+      (re-find #"^e\+.*" input)))
+
+;; Helpers
+
+(defn set-conversion [db input [from to]]
   (let [num (str->number input)]
-    (cond
-     num (-> db
-           (assoc-in [:temperature-converter :farenheit]
-                     (str (celcius->farenheit num)))
-           (assoc-in [:temperature-converter :celcius] input))
-     (input-edge-case? input)
-     (assoc-in db [:temperature-converter :celcius] input)
-     :else db)))
+    (cond num (-> db
+                (assoc from input)
+                (assoc to (str ((get conversion-fns [from to]) num))))
+          (input-edge-case? input) (assoc db from input)
+          :else db)))
+
+(defn handle-input! [e db [from to]]
+  (swap! db set-conversion (-> e .-target .-value) [from to]))
+
+;; View
 
 (defn temperature-converter []
   [:div
-   [:input {:on-change #(swap! state set-farenheit (-> % .-target .-value))
-            :value (get-in @state [:temperature-converter :farenheit])}]
-   [:input {:on-change #(swap! state set-celcius (-> % .-target .-value))
-            :value (get-in @state [:temperature-converter :celcius])}]])
+   [:input {:on-change #(handle-input! % db [:fahrenheit :celcius])
+            :value (:fahrenheit @db)}]
+   [:input {:on-change #(handle-input! % db [:celcius :fahrenheit])
+            :value (:celcius @db)}]])
