@@ -3,6 +3,7 @@
             [seven-guis.tasks.temperature-converter :refer [temperature-converter]]
             [seven-guis.tasks.flight-booker :refer [flight-booker]]
             [seven-guis.tasks.timer :refer [timer]]
+            [seven-guis.tasks.crud :refer [crud]]
             [reagent.dom :as rdom]))
 
 (defn main []
@@ -10,7 +11,8 @@
    [counter]
    [temperature-converter]
    [flight-booker]
-   [timer]])
+   [timer]
+   [crud]])
 
 (defn init []
   (let [app-element (js/document.getElementById "app")]
