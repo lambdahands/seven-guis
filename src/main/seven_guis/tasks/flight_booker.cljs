@@ -50,12 +50,16 @@
   (let [validated-inputs (validate-inputs @db)]
     [:div.flight-booker
      [:select {:on-change
-               #(swap! db assoc :trip-type (keyword (-> % .-target .-value)))}
+               #(swap! db assoc
+                       :trip-type (keyword (-> % .-target .-value))
+                       :flight-booked? false)}
       [:option {:value "one-way"} "One Way Flight"]
       [:option {:value "roundtrip"} "Roundtrip Flight"]]
      [:input {:type "text"
               :class (when-not (:one-way validated-inputs) "invalid")
-              :on-change #(swap! db assoc :one-way (-> % .-target .-value))
+              :on-change #(swap! db assoc
+                                 :one-way (-> % .-target .-value)
+                                 :flight-booked? false)
               :value (:one-way @db)}]
      [:input {:type "text"
               :class (when (and
@@ -63,7 +67,9 @@
                             (not (:roundtrip validated-inputs)))
                        "invalid")
               :disabled (not= :roundtrip (:trip-type @db))
-              :on-change #(swap! db assoc :roundtrip (-> % .-target .-value))
+              :on-change #(swap! db assoc
+                                 :roundtrip (-> % .-target .-value)
+                                 :flight-booked? false)
               :value (:roundtrip @db)}]
      [:button {:disabled (not (dates-valid? validated-inputs))
                :on-click #(swap! db assoc :flight-booked? true)}
