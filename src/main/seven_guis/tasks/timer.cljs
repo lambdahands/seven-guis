@@ -55,7 +55,7 @@
                     :background "blue"
                     :transition "all 100ms linear"}}]]
    [:p (str "Elapsed time " (.toFixed (/ (:elapsed @db) 1000) 1))]
-   [:p (str "Interval " (:interval @db) "s")]
+   [:p (str "Duration " (:interval @db) "s")]
    [:input {:type "range" :min 0 :max 60 :step 1
             :value (:interval @db)
             :on-change #(on-slide! % db)}]
