@@ -1,7 +1,9 @@
 (ns seven-guis.tasks.counter
   (:require [reagent.core :as r]))
 
-(defonce app-state (r/atom {:counter 0}))
+(def initial-state {:counter 0})
+
+(defonce app-state (r/atom initial-state))
 
 (defn increment-counter [state]
   (update state :counter inc))

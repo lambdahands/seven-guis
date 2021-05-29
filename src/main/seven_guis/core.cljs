@@ -1,22 +1,16 @@
 (ns seven-guis.core
-  (:require [seven-guis.tasks.counter :refer [counter]]
-            [seven-guis.tasks.temperature-converter :refer [temperature-converter]]
-            [seven-guis.tasks.flight-booker :refer [flight-booker]]
-            [seven-guis.tasks.timer :refer [timer]]
-            [seven-guis.tasks.crud :refer [crud]]
+  (:require [seven-guis.app.events :as app-events]
+            [seven-guis.app.views :as app-views]
+            [re-frame.core :refer [dispatch-sync]]
             [reagent.dom :as rdom]))
 
-(defn main []
-  [:div
-   [counter]
-   [temperature-converter]
-   [flight-booker]
-   [timer]
-   [crud]])
+(defonce initialize-state
+ (dispatch-sync [::app-events/initialize-state]))
+
 
 (defn init []
   (let [app-element (js/document.getElementById "app")]
-    (rdom/render [main] app-element)))
+    (rdom/render [app-views/app] app-element)))
 
 (defn ^:dev/after-load re-render []
   (init))

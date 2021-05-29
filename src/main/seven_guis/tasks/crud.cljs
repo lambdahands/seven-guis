@@ -2,12 +2,16 @@
   (:require [reagent.core :as r]
             [clojure.string :as str]))
 
-(defonce db (r/atom {:names {}
-                     :selected-id nil
-                     :first-name ""
-                     :last-name ""
-                     :filter-prefix ""
-                     :filtered-names []}))
+(def initial-state
+  {:names {}
+   :selected-id nil
+   :first-name ""
+   :last-name ""
+   :filter-prefix ""
+   :filtered-names []})
+
+
+#_(defonce db (r/atom initial-state))
 
 (defn clear-name-inputs [db]
   (assoc db :first-name "" :last-name ""))
@@ -58,6 +62,7 @@
 ;; View
 
 (defn crud []
+  #_
   [:div
    [:input {:type "text"
             :on-change #(swap! db assoc :first-name (-> % .-target .-value))

@@ -2,10 +2,13 @@
   (:require [cljs.core.async :as a :refer [go go-loop chan <! >! put! timeout]]
             [reagent.core :as r]))
 
-(defonce db (r/atom {:interval 0
-                     :elapsed 0
-                     :interval-ch (chan)
-                     :timer-ch nil}))
+(def initial-state
+  {:interval 0
+   :elapsed 0
+   :interval-ch (chan)
+   :timer-ch nil})
+
+(defonce db (r/atom initial-state))
 
 (defn start-timer! [get-interval interval-ch]
   (let [tick-ms 100

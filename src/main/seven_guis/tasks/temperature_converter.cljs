@@ -3,16 +3,9 @@
 
 ;; State
 
-(defonce db (r/atom {:fahrenheit "32" :celcius "0"}))
+(def initial-state {:fahrenheit "32" :celcius "0"})
 
-;; Parsers
-
-(defn str->number [string]
-  (let [num (js/Number string)]
-    (when (and (not (js/Number.isNaN num))
-               (js/Number.isFinite num)
-               (number? num))
-      num)))
+(defonce db (r/atom initial-state))
 
 ;; Conversion Functions
 
@@ -36,6 +29,13 @@
       (re-find #"^e\+.*" input)))
 
 ;; Helpers
+
+(defn str->number [string]
+  (let [num (js/Number string)]
+    (when (and (not (js/Number.isNaN num))
+               (js/Number.isFinite num)
+               (number? num))
+      num)))
 
 (defn set-conversion [db input [from to]]
   (let [num (str->number input)]
