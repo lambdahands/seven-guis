@@ -4,14 +4,14 @@
             [re-frame.core :refer [dispatch subscribe]]))
 
 (defn handle-change [e from to]
-  (dispatch [::e/handle-conversion from  to (-> e .-target .-value)]))
+  (dispatch [::e/handle-conversion (-> e .-target .-value) from to]))
 
 (defn temperature-converter []
   (let [fahrenheit @(subscribe [::s/fahrenheit])
         celcius    @(subscribe [::s/celcius])]
     [:div
-     [:input {:on-change #(handle-change :fahrenheit :celcius %)
+     [:input {:on-change #(handle-change % :fahrenheit :celcius)
               :value fahrenheit}]
-     [:input {:on-change #(handle-change :celcius :fahrenheit %)
+     [:input {:on-change #(handle-change % :celcius :fahrenheit)
               :value celcius}]]))
 

@@ -20,9 +20,11 @@
               :on-change #(dispatch [::e/update-filter-prefix (-> % .-target .-value)])
               :value filter-prefix}]
      [:button {:on-click #(dispatch [::e/create-name])} "Create"]
-     [:button {:on-click #(dispatch [::e/update-name])} "Update"]
+     [:button {:disabled (not (:with-selected-id? list-names))
+               :on-click #(dispatch [::e/update-name])}
+      "Update"]
      [:button {:on-click #(dispatch [::e/delete-name])} "Delete"]
      [:hr]
-     (for [[id {:keys [first-name last-name]}] list-names]
+     (for [[id {:keys [first-name last-name]}] (:names list-names)]
        [:div {:key id :on-click #(dispatch [::e/select-name id])}
         (str last-name ", " first-name)])]))

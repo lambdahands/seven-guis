@@ -6,7 +6,7 @@
   (+ 32 (* num (/ 9 5))))
 
 (defn fahrenheit->celcius [num]
-  (* (- num 32) (/ 9 5)))
+  (* (- num 32) (/ 5 9)))
 
 (def conversion-fns
   {[:fahrenheit :celcius] fahrenheit->celcius
@@ -15,7 +15,8 @@
 ;; Validators
 
 (defn number-edge-case? [value]
-  (or (= "-" value)
+  (or (= "" value)
+      (= "-" value)
       (re-find #".*e$" value)
       (re-find #".*e\+$" value)
       (re-find #"^e.*" value)
@@ -30,12 +31,12 @@
                (number? num))
       num)))
 
-(defn handle-conversion [db [_ from to value]]
+(defn handle-conversion [db [_ value from to]]
   (let [num (str->number value)]
-    (cond num (-> db
+    (cond (number-edge-case? value) (assoc db from value)
+          num (-> db
                 (assoc from value)
                 (assoc to (str ((get conversion-fns [from to]) num))))
-          (number-edge-case? value) (assoc db from value)
           :else db)))
 
 (re/reg-event-db ::handle-conversion

@@ -29,7 +29,7 @@
   (-> db
     (update :names dissoc (:selected-id db))
     (assoc :selected-id nil)
-    (clear-name-inputs)))
+    (assoc :first-name "" :last-name "")))
 
 (defn select-name [db [_ id]]
   (assoc db
@@ -43,16 +43,8 @@
 (defn update-last-name [db [_ value]]
   (assoc db :last-name value))
 
-(defn update-filter-prefix [{:keys [selected-id names] :as db} [_ filter-prefix]]
-  (let [filtered-names (filter-names names filter-prefix)
-        selected-id (ffirst (filter #(= selected-id (first %)) filtered-names))
-        filtered-db (assoc db
-                           :filter-prefix filter-prefix
-                           :filtered-names filtered-names
-                           :selected-id selected-id)]
-    (if (nil? selected-id)
-      (clear-name-inputs filtered-db)
-      filtered-db)))
+(defn update-filter-prefix [db [_ filter-prefix with-selected-id?]]
+  (assoc db :filter-prefix filter-prefix))
 
 ;; Registration
 

@@ -21,11 +21,12 @@
 (defn roundtrip-date-valid? [one-way roundtrip]
   (<= (reset-day! (new js/Date one-way)) (new js/Date roundtrip)))
 
-(defn dates-valid? [_ [_ {:keys [one-way roundtrip] :as valid-inputs}]]
+(defn dates-valid? [db [_ {:keys [one-way roundtrip] :as valid-inputs}]]
   (and one-way
        roundtrip
        (one-way-date-valid? one-way)
-       (roundtrip-date-valid? one-way roundtrip)))
+       (or (= (:trip-type db) :one-way)
+           (roundtrip-date-valid? one-way roundtrip))))
 
 (re/reg-sub ::trip-type #(get-in % [::db/flight-booker :trip-type]))
 (re/reg-sub ::one-way #(get-in % [::db/flight-booker :one-way]))
