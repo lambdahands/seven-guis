@@ -1,5 +1,4 @@
-(ns seven-guis.tasks.timer.db
-  (:require [cljs.core.async :refer [chan]]))
+(ns seven-guis.tasks.timer.db)
 
 (def initial-state
   {::timer {:interval 0

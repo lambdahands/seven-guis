@@ -8,7 +8,7 @@
 (defn validate-date-string [string]
   (re-find #"^(\d{2})/(\d{2})/(\d{4})$" string))
 
-(defn validate-inputs [{:keys [one-way roundtrip] :as db}]
+(defn validate-inputs [{:keys [one-way roundtrip]}]
   (let [first- (fnil first nil)]
    {:one-way (first- (validate-date-string one-way))
     :roundtrip (first- (validate-date-string roundtrip))}))
@@ -21,7 +21,7 @@
 (defn roundtrip-date-valid? [one-way roundtrip]
   (<= (reset-day! (new js/Date one-way)) (new js/Date roundtrip)))
 
-(defn dates-valid? [db [_ {:keys [one-way roundtrip] :as valid-inputs}]]
+(defn dates-valid? [db [_ {:keys [one-way roundtrip]}]]
   (and one-way
        roundtrip
        (one-way-date-valid? one-way)

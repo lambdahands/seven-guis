@@ -9,7 +9,7 @@
   (assoc db :first-name "" :last-name ""))
 
 (defn filter-names [names filter-prefix]
-  (filter (fn [[id {:keys [last-name]}]]
+  (filter (fn [[_ {:keys [last-name]}]]
             (str/starts-with? (str/lower-case last-name)
                               (str/lower-case filter-prefix)))
           names))
@@ -43,7 +43,7 @@
 (defn update-last-name [db [_ value]]
   (assoc db :last-name value))
 
-(defn update-filter-prefix [db [_ filter-prefix with-selected-id?]]
+(defn update-filter-prefix [db [_ filter-prefix]]
   (assoc db :filter-prefix filter-prefix))
 
 ;; Registration

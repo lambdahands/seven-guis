@@ -27,5 +27,8 @@
     [:button {:on-click #(dispatch [::e/reset-timer])} "Reset"]]))
 
 (def timer
-  (with-meta timer- {:component-did-mount #(dispatch [::e/reset-timer])}))
+  (with-meta
+   timer-
+   {:component-did-mount #(when-not @(subscribe [::s/timer-ch])
+                            (dispatch [::e/reset-timer]))}))
 

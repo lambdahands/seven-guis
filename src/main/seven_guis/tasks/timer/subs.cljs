@@ -4,3 +4,4 @@
 
 (re/reg-sub ::interval #(get-in % [::db/timer :interval]))
 (re/reg-sub ::elapsed  #(get-in % [::db/timer :elapsed]))
+(re/reg-sub ::timer-ch  #(get-in % [::db/timer :timer-ch]))

@@ -6,12 +6,12 @@
 (defn filter-names [names filter-prefix]
   (if (empty? filter-prefix)
     names
-    (filter (fn [[id {:keys [last-name]}]]
+    (filter (fn [[_ {:keys [last-name]}]]
               (str/starts-with? (str/lower-case last-name)
                                 (str/lower-case filter-prefix)))
             names)))
 
-(defn list-names [{:keys [names filter-prefix selected-id] :as db}]
+(defn list-names [{:keys [names filter-prefix selected-id]}]
   (let [filtered-names (filter-names names filter-prefix)
         selected-id (ffirst (filter #(= selected-id (first %)) filtered-names))
         names (sort-by first (seq filtered-names))]
