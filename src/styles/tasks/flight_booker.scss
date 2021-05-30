@@ -3,14 +3,20 @@
   flex-direction: column;
   max-width: 400px;
   width: 100%;
-  .flight-booker__input-group {
+  &__input-group {
     margin-bottom: .75rem;
   }
-  .flight-booker__input {
+  &__input {
     display: block;
     width: 100%;
+    &--invalid {
+      border-color: red;
+      &:focus {
+        box-shadow: 0 0 10px rgba(red, .2);
+      }
+    }
   }
-  .flight-booker__button {
+  &__button {
     margin-top: .5rem;
   }
 }
