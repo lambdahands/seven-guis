@@ -3,6 +3,27 @@
             [seven-guis.tasks.flight-booker.subs :as s]
             [re-frame.core :refer [dispatch subscribe]]))
 
+(defn flight-booker-description []
+  [:p "The task is to build a frame containing a combobox "
+   [:em "C"] " with the two options “one-way flight” and “return flight”, two textfields "
+   [:em "T" [:sub "1"]] " and "
+   [:em "T" [:sub "2"]] " representing the start and return date, respectively, and a button "
+   [:em "B"] " for submitting the selected flight. "
+   [:em "T" [:sub "2"]] " is enabled iff "
+   [:em "C"] "’s value is “return flight”. When "
+   [:em "C"] " has the value “return flight” and "
+   [:em "T" [:sub "2"]] "’s date is strictly before "
+   [:em "T" [:sub "1"]] "’s then "
+   [:em "B"] " is disabled. When a non-disabled textfield "
+   [:em "T"] " has an ill-formatted date then "
+   [:em "T"] " is colored red and "
+   [:em "B"] " is disabled. When clicking "
+   [:em "B"] " a message is displayed informing the user of his selection (e.g. “You have booked a one-way flight on 04.04.2014.”). Initially, "
+   [:em "C"] " has the value “one-way flight” and "
+   [:em "T" [:sub "1"]] " as well as "
+   [:em "T" [:sub "2"]] " have the same (arbitrary) date (it is implied that "
+   [:em "T" [:sub "2"]] " is disabled)."])
+
 (defn flight-booker []
   (let [trip-type      @(subscribe [::s/trip-type])
         one-way        @(subscribe [::s/one-way])

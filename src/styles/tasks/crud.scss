@@ -21,9 +21,11 @@
   }
   &__entry {
     border-radius: 5px;
+    cursor: pointer;
     padding: 0.5rem 0.5rem;
     &--selected {
       background: $bright-blue;
+      font-weight: 600;
     }
     &:not(:first-child) {
       margin-top: .5rem;

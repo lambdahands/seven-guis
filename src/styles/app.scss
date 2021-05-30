@@ -1,7 +1,14 @@
 @import "./_variables.scss";
 
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .header {
   background: $bright-blue;
+  border-bottom: 1px solid $light-blue;
   width: 100%;
   padding: 1rem 1rem;
   display: flex;
@@ -32,9 +39,39 @@
   }
 }
 
-.content {
-  justify-content: center;
+.content-wrapper {
   display: flex;
-  padding: 4rem 1rem 0;
   width: 100%;
+  height: 100%;
+  .description {
+    background: $bright-orange;
+    width: 50%;
+    padding: 3rem 2rem 0;
+    &__content {
+      line-height: 1.5;
+    }
+  }
+  .content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    width: 50%;
+    &__task {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 3rem;
+      width: 100%;
+    }
+  }
+}
+
+.reset-state {
+  border-bottom: 1px solid $bright-blue;
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }

@@ -16,7 +16,7 @@
   "scripts": {
     "watch:cljs": "shadow-cljs watch app",
     "watch:sass": "gulp sass:watch",
-    "build:cljs": "shadow-cljs compile app",
+    "build:cljs": "shadow-cljs release app",
     "build:sass": "gulp sass"
   }
 }
