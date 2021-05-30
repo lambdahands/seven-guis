@@ -12,5 +12,11 @@
   "dependencies": {
     "react": "17.0.1",
     "react-dom": "17.0.1"
+  },
+  "scripts": {
+    "watch:cljs": "shadow-cljs watch app",
+    "watch:sass": "gulp sass:watch",
+    "build:cljs": "shadow-cljs compile app",
+    "build:sass": "gulp sass"
   }
 }

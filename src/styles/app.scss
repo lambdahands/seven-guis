@@ -7,28 +7,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .header__title {
+  &__title {
     color: $dark-blue;
   }
-  .header_links {}
-  .header__link {
+  &__link {
     border-radius: 5px;
     color: $dim-blue;
     cursor: pointer;
     flex-shrink: 0;
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
     opacity: 0.8;
-    padding: .5rem .75rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
     transition: all linear 50ms;
     &:hover {
       color: $dark-blue;
     }
-  }
-  .header__link--selected {
-    background: $light-blue;
-    color: $dark-blue;
-    font-weight: 600;
-    opacity: 1;
+    &--selected {
+      background: $light-blue;
+      color: $dark-blue;
+      font-weight: 600;
+      opacity: 1;
+    }
   }
 }
 

@@ -32,10 +32,14 @@
     (assoc :first-name "" :last-name "")))
 
 (defn select-name [db [_ id]]
-  (assoc db
-         :selected-id id
-         :first-name (get-in db [:names id :first-name])
-         :last-name (get-in db [:names id :last-name])))
+  (if-not (= id (:selected-id db))
+    (assoc db
+           :selected-id id
+           :first-name (get-in db [:names id :first-name])
+           :last-name (get-in db [:names id :last-name]))
+    (-> db
+     (assoc :selected-id nil)
+     (clear-name-inputs))))
 
 (defn update-first-name [db [_ value]]
   (assoc db :first-name value))

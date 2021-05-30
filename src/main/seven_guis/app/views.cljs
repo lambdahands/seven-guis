@@ -24,6 +24,7 @@
        (for [[id task-id title] tabs]
          [:a.header__link
           {:key id
+           :href "#"
            :class (when (= task-id task) "header__link--selected")
            :on-click #(dispatch [::e/select-task task-id])}
           title])]]

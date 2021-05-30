@@ -1,0 +1,65 @@
+@import "../_variables";
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 200px;
+
+  &__progress-bar-wrapper {
+    background: #eee;
+    border-radius: 0.25rem;
+    height: 0.5rem;
+    margin: 0 1rem .5rem;
+    overflow: hidden;
+    .timer__progress-bar {
+      background: $blue;
+      border-radius: 0.25rem;
+      height: 0.5rem;
+      transition: all 200ms ease;
+      &--done {
+        background: $green;
+      }
+    }
+  }
+
+  &__elapsed {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    &-title {
+      color: #666;
+      margin: 0;
+    }
+    &-value {
+      font-size: 5rem;
+      margin: 0;
+      &--done {
+        color: $green;
+      }
+    }
+  }
+
+  &__controls {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(black, .05);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    &-duration {
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    &-slider {
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0;
+      padding-bottom: 1rem;
+    }
+  }
+}

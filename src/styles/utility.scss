@@ -68,13 +68,9 @@
     transform: translateY(2px);
     outline: none;
   }
-  &:focus {
-    border-width: 2px;
-    outline: none;
-  }
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: 0.4;
   }
 
   &.button--confirm {
@@ -87,6 +83,19 @@
     }
     &:active {
       background: $faded-green;
+    }
+  }
+
+  &.button--cancel {
+    background: $bright-orange;
+    border-color: $orange;
+    box-shadow: 0 5px 10px rgba($orange, .25);
+    color: $dim-orange;
+    &:hover:not([disabled]) {
+      background: $light-orange;
+    }
+    &:active {
+      background: $faded-orange;
     }
   }
 }

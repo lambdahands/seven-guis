@@ -1,0 +1,48 @@
+.crud {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(black, 0.05);
+  &__actions {
+    display: flex;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+    .crud__button {
+      width: 100%;
+      &:not(:first-child) {
+        margin-left: 1rem;
+      }
+    }
+  }
+  &__entry {
+    border-radius: 5px;
+    padding: 0.5rem 0.5rem;
+    &--selected {
+      background: $bright-blue;
+    }
+    &:not(:first-child) {
+      margin-top: .5rem;
+    }
+  }
+  &__search {
+    margin-bottom: .5rem;
+  }
+}
+
+.crud__name-inputs {
+  display: flex;
+  margin-bottom: 1rem;
+  .crud__input-group {
+    .crud__input {
+      width: 100%;
+    }
+    &:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+}

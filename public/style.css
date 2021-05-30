@@ -70,12 +70,9 @@ h1, h2, h3, h4, h5, h6 {
     background: #afd9ef;
     transform: translateY(2px);
     outline: none; }
-  .button:focus {
-    border-width: 2px;
-    outline: none; }
   .button:disabled {
     cursor: not-allowed;
-    opacity: 0.6; }
+    opacity: 0.4; }
   .button.button--confirm {
     background: #e3f7de;
     border-color: #55d039;
@@ -85,6 +82,15 @@ h1, h2, h3, h4, h5, h6 {
       background: #b8ebad; }
     .button.button--confirm:active {
       background: #89df76; }
+  .button.button--cancel {
+    background: #FEE1C2;
+    border-color: #FD901C;
+    box-shadow: 0 5px 10px rgba(253, 144, 28, 0.25);
+    color: #C96903; }
+    .button.button--cancel:hover:not([disabled]) {
+      background: #FDBA72; }
+    .button.button--cancel:active {
+      background: #FCA64A; }
 
 .header {
   background: #e3f6ff;
@@ -93,24 +99,25 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between; }
-  .header .header__title {
+  .header__title {
     color: #185373; }
-  .header .header__link {
+  .header__link {
     border-radius: 5px;
     color: #2c759c;
     cursor: pointer;
     flex-shrink: 0;
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
     opacity: 0.8;
-    padding: .5rem .75rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
     transition: all linear 50ms; }
-    .header .header__link:hover {
+    .header__link:hover {
       color: #185373; }
-  .header .header__link--selected {
-    background: #b9dff3;
-    color: #185373;
-    font-weight: 600;
-    opacity: 1; }
+    .header__link--selected {
+      background: #b9dff3;
+      color: #185373;
+      font-weight: 600;
+      opacity: 1; }
 
 .content {
   justify-content: center;
@@ -128,19 +135,55 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 20px;
     color: #666;
     display: block;
+    font-size: 6rem;
     height: 100vw;
     width: 100vw;
     margin-bottom: 1rem;
     max-width: 200px;
     max-height: 200px;
-    text-align: center;
-    font-size: 7rem; }
+    text-align: center; }
   .counter .counter__button {
     display: block;
     padding: .5rem 1rem;
     font-size: 1.5rem;
     max-width: 200px;
     width: 100%; }
+
+.crud {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); }
+  .crud__actions {
+    display: flex;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd; }
+    .crud__actions .crud__button {
+      width: 100%; }
+      .crud__actions .crud__button:not(:first-child) {
+        margin-left: 1rem; }
+  .crud__entry {
+    border-radius: 5px;
+    padding: 0.5rem 0.5rem; }
+    .crud__entry--selected {
+      background: #e3f6ff; }
+    .crud__entry:not(:first-child) {
+      margin-top: .5rem; }
+  .crud__search {
+    margin-bottom: .5rem; }
+
+.crud__name-inputs {
+  display: flex;
+  margin-bottom: 1rem; }
+  .crud__name-inputs .crud__input-group .crud__input {
+    width: 100%; }
+  .crud__name-inputs .crud__input-group:not(:first-child) {
+    margin-left: 1rem; }
 
 .flight-booker {
   display: flex;
@@ -173,3 +216,53 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     justify-content: center;
     align-items: center; }
+
+.timer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 200px; }
+  .timer__progress-bar-wrapper {
+    background: #eee;
+    border-radius: 0.25rem;
+    height: 0.5rem;
+    margin: 0 1rem .5rem;
+    overflow: hidden; }
+    .timer__progress-bar-wrapper .timer__progress-bar {
+      background: #2397d1;
+      border-radius: 0.25rem;
+      height: 0.5rem;
+      transition: all 200ms ease; }
+      .timer__progress-bar-wrapper .timer__progress-bar--done {
+        background: #55d039; }
+  .timer__elapsed {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0; }
+    .timer__elapsed-title {
+      color: #666;
+      margin: 0; }
+    .timer__elapsed-value {
+      font-size: 5rem;
+      margin: 0; }
+      .timer__elapsed-value--done {
+        color: #55d039; }
+  .timer__controls {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem; }
+    .timer__controls-duration {
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+      text-align: center; }
+    .timer__controls-slider {
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0;
+      padding-bottom: 1rem; }

@@ -3,4 +3,5 @@
 (def initial-state
   {::timer {:interval 0
             :elapsed 0
-            :timer-ch nil}})
+            :timer-ch nil
+            :interval-ch nil}})
