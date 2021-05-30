@@ -1,0 +1,40 @@
+@import "./_variables.scss";
+
+.header {
+  background: $bright-blue;
+  width: 100%;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .header__title {
+    color: $dark-blue;
+  }
+  .header_links {}
+  .header__link {
+    border-radius: 5px;
+    color: $dim-blue;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 0 .5rem;
+    opacity: 0.8;
+    padding: .5rem .75rem;
+    transition: all linear 50ms;
+    &:hover {
+      color: $dark-blue;
+    }
+  }
+  .header__link--selected {
+    background: $light-blue;
+    color: $dark-blue;
+    font-weight: 600;
+    opacity: 1;
+  }
+}
+
+.content {
+  justify-content: center;
+  display: flex;
+  padding: 4rem 1rem 0;
+  width: 100%;
+}

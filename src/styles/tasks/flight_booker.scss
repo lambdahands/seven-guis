@@ -1,0 +1,16 @@
+.flight-booker {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  .flight-booker__input-group {
+    margin-bottom: .75rem;
+  }
+  .flight-booker__input {
+    display: block;
+    width: 100%;
+  }
+  .flight-booker__button {
+    margin-top: .5rem;
+  }
+}

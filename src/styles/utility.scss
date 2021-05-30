@@ -1,0 +1,92 @@
+@import "./_variables.scss";
+
+.label {
+  color: $dark-blue;
+  display: block;
+  padding-bottom: .25rem;
+}
+
+.input {
+  border-radius: 5px;
+  border: 1px solid $blue;
+  font-size: 1rem;
+  padding: .5rem .75rem;
+  &:active, &:focus {
+    box-shadow: 0 0 10px rgba($faded-blue, 1);
+    outline: none;
+  }
+  &:disabled {
+    background: #eee;
+    opacity: 0.5;
+  }
+}
+
+
+.select {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid $blue;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  &::after {
+    align-items: center;
+    color: $dim-blue;
+    content: "▼";
+    display: flex;
+    font-size: .75rem;
+    height: 100%;
+    position: absolute;
+    right: .75rem;
+    top: 0;
+  }
+}
+
+.button {
+  background: $bright-blue;
+  border: 1px solid;
+  border-color: $blue;
+  box-shadow: 0 5px 10px rgba($blue, .25);
+  color: $dim-blue;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: .5rem 1rem;
+  transition: all linear 150ms;
+  &:hover:not([disabled]) {
+    background: $light-blue;
+  }
+  &:active {
+    background: $faded-blue;
+    transform: translateY(2px);
+    outline: none;
+  }
+  &:focus {
+    border-width: 2px;
+    outline: none;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &.button--confirm {
+    background: $bright-green;
+    border-color: $green;
+    box-shadow: 0 5px 10px rgba($green, .25);
+    color: $dim-green;
+    &:hover:not([disabled]) {
+      background: $light-green;
+    }
+    &:active {
+      background: $faded-green;
+    }
+  }
+}

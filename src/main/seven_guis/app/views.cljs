@@ -17,14 +17,20 @@
 
 (defn app []
   (let [task @(subscribe [::s/task])]
-    [:div
-     [:div
-      (for [[id task title] tabs]
-        [:a {:key id :on-click #(dispatch [::e/select-task task])}
-         title])]
-     (condp = task
-       :counter               [counter]
-       :flight-booker         [flight-booker]
-       :temperature-converter [temperature-converter]
-       :timer                 [timer]
-       :crud                  [crud])]))
+    [:<>
+     [:div.header
+      [:h2.header__title "Seven GUIs"]
+      [:div.header__links
+       (for [[id task-id title] tabs]
+         [:a.header__link
+          {:key id
+           :class (when (= task-id task) "header__link--selected")
+           :on-click #(dispatch [::e/select-task task-id])}
+          title])]]
+     [:div.content
+      (condp = task
+        :counter               [counter]
+        :flight-booker         [flight-booker]
+        :temperature-converter [temperature-converter]
+        :timer                 [timer]
+        :crud                  [crud])]]))

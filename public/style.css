@@ -1,12 +1,175 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box; }
+
 body {
-  background: #ddd;
-}
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+.label {
+  color: #185373;
+  display: block;
+  padding-bottom: .25rem; }
+
+.input {
+  border-radius: 5px;
+  border: 1px solid #2397d1;
+  font-size: 1rem;
+  padding: .5rem .75rem; }
+  .input:active, .input:focus {
+    box-shadow: 0 0 10px #afd9ef;
+    outline: none; }
+  .input:disabled {
+    background: #eee;
+    opacity: 0.5; }
+
+.select {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid #2397d1;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%; }
+
+.select-wrapper {
+  position: relative;
+  width: 100%; }
+  .select-wrapper::after {
+    align-items: center;
+    color: #2c759c;
+    content: "▼";
+    display: flex;
+    font-size: .75rem;
+    height: 100%;
+    position: absolute;
+    right: .75rem;
+    top: 0; }
+
+.button {
+  background: #e3f6ff;
+  border: 1px solid;
+  border-color: #2397d1;
+  box-shadow: 0 5px 10px rgba(35, 151, 209, 0.25);
+  color: #2c759c;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: .5rem 1rem;
+  transition: all linear 150ms; }
+  .button:hover:not([disabled]) {
+    background: #b9dff3; }
+  .button:active {
+    background: #afd9ef;
+    transform: translateY(2px);
+    outline: none; }
+  .button:focus {
+    border-width: 2px;
+    outline: none; }
+  .button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6; }
+  .button.button--confirm {
+    background: #e3f7de;
+    border-color: #55d039;
+    box-shadow: 0 5px 10px rgba(85, 208, 57, 0.25);
+    color: #3fa428; }
+    .button.button--confirm:hover:not([disabled]) {
+      background: #b8ebad; }
+    .button.button--confirm:active {
+      background: #89df76; }
+
+.header {
+  background: #e3f6ff;
+  width: 100%;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .header .header__title {
+    color: #185373; }
+  .header .header__link {
+    border-radius: 5px;
+    color: #2c759c;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 0 .5rem;
+    opacity: 0.8;
+    padding: .5rem .75rem;
+    transition: all linear 50ms; }
+    .header .header__link:hover {
+      color: #185373; }
+  .header .header__link--selected {
+    background: #b9dff3;
+    color: #185373;
+    font-weight: 600;
+    opacity: 1; }
+
+.content {
+  justify-content: center;
+  display: flex;
+  padding: 4rem 1rem 0;
+  width: 100%; }
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; }
+  .counter .counter__input {
+    border: 1px solid #eee;
+    border-radius: 20px;
+    color: #666;
+    display: block;
+    height: 100vw;
+    width: 100vw;
+    margin-bottom: 1rem;
+    max-width: 200px;
+    max-height: 200px;
+    text-align: center;
+    font-size: 7rem; }
+  .counter .counter__button {
+    display: block;
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+    max-width: 200px;
+    width: 100%; }
 
 .flight-booker {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%; }
+  .flight-booker .flight-booker__input-group {
+    margin-bottom: .75rem; }
+  .flight-booker .flight-booker__input {
+    display: block;
+    width: 100%; }
+  .flight-booker .flight-booker__button {
+    margin-top: .5rem; }
 
-}
-
-.invalid {
-  border-color: red;
-}
-
+.temperature-converter {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .temperature-converter .temperature-converter__input-group {
+    display: flex;
+    flex-direction: column; }
+  .temperature-converter .temperature-converter__equals {
+    background: #eee;
+    border-radius: 5px;
+    color: #666;
+    display: flex;
+    height: 30px;
+    margin: 1rem 0;
+    width: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center; }

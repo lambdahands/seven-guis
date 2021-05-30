@@ -9,9 +9,16 @@
 (defn temperature-converter []
   (let [fahrenheit @(subscribe [::s/fahrenheit])
         celcius    @(subscribe [::s/celcius])]
-    [:div
-     [:input {:on-change #(handle-change % :fahrenheit :celcius)
-              :value fahrenheit}]
-     [:input {:on-change #(handle-change % :celcius :fahrenheit)
-              :value celcius}]]))
+    [:div.temperature-converter
+     [:div.temperature-converter__input-group
+      [:label.label "Fahrenheit"]
+      [:input.input
+       {:on-change #(handle-change % :fahrenheit :celcius)
+        :value fahrenheit}]]
+     [:h2.temperature-converter__equals "="]
+     [:div.temperature-converter__input-group
+      [:label.label "Celcius"]
+      [:input.input
+       {:on-change #(handle-change % :celcius :fahrenheit)
+        :value celcius}]]]))
 

@@ -5,7 +5,8 @@
 
 (defn counter []
   (let [counter @(subscribe [::s/counter])]
-    [:div
-     [:input {:disabled true :value counter}]
-     [:button {:on-click #(dispatch [::e/increment-counter])}
+    [:div.counter
+     [:input.input.counter__input {:disabled true :value counter}]
+     [:button.button.button--confirm.counter__button.
+      {:on-click #(dispatch [::e/increment-counter])}
       "Count"]]))

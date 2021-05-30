@@ -1,8 +1,12 @@
 {
-  "name": "seven-guis2",
+  "name": "seven-guis",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^6.0.0",
     "shadow-cljs": "2.14.0"
   },
   "dependencies": {
