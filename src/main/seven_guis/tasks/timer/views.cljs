@@ -18,7 +18,7 @@
    [:em "e ≥ d"] " is true then the timer stops (and "
    [:em "G"] " will be full). If, thereafter, "
    [:em "d"] " is increased such that "
-   [:em "d &gt; e"] " will be true then the timer restarts to tick until "
+   [:em "d > e"] " will be true then the timer restarts to tick until "
    [:em "e ≥ d"] " is true again. Clicking "
    [:em "R"] " will reset "
    [:em "e"] " to zero."])

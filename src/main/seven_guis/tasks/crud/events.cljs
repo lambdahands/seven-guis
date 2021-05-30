@@ -19,7 +19,8 @@
 (defn create-name [db]
   (let [id (count (:names db))]
     (-> db
-     (update :names assoc id (select-keys db [:first-name :last-name])))))
+     (update :names assoc id (select-keys db [:first-name :last-name]))
+     (clear-name-inputs))))
 
 (defn update-name [db]
   (let [new-name (select-keys db [:first-name :last-name])]

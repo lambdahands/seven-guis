@@ -43,17 +43,17 @@
       [:label.label "Departure Date (MM/DD/YYYY)"]
       [:input.input.flight-booker__input
        {:type "text"
-        :class (when-not (:one-way valid-inputs) "invalid")
+        :class (when-not (:one-way valid-inputs)
+                 "flight-booker__input--invalid")
         :on-change #(dispatch [::e/update-one-way (-> % .-target .-value)])
         :value one-way}]]
      [:div.flight-booker__input-group
       [:label.label "Return Date (MM/DD/YYYY)"]
       [:input.input.flight-booker__input
        {:type "text"
-        :class (when (and
-                      (not= :roundtrip trip-type)
-                      (not (:roundtrip valid-inputs)))
-                 "invalid")
+        :class (when (and (not= :roundtrip trip-type)
+                          (not (:roundtrip valid-inputs)))
+                 "flight-booker__input--invalid")
         :disabled (not= :roundtrip trip-type)
         :on-change #(dispatch [::e/update-roundtrip (-> % .-target .-value)])
         :value roundtrip}]]
@@ -64,7 +64,7 @@
      (when flight-booked?
        [:p (condp = trip-type
              :one-way
-             (str "You've booked a one-way flight on " one-way)
+             [:<> "You booked a one-way flight on " [:strong one-way]]
              :roundtrip
-             (str "You've booked a roundtrip flight from "
-                  one-way " to " roundtrip))])]))
+             [:<> "You booked a roundtrip flight from "
+              [:strong one-way] " to " [:strong roundtrip]])])]))
