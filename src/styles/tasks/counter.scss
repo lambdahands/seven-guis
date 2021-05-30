@@ -5,8 +5,10 @@
   width: 100%;
 
   .counter__input {
-    border: 1px solid #eee;
+    background: white;
+    border: 1px solid #ddd;
     border-radius: 20px;
+    box-shadow: 0 0 10px rgba(black, .05);
     color: #666;
     display: block;
     font-size: 6rem;
@@ -16,6 +18,7 @@
     margin-bottom: 1rem;
     max-width: 200px;
     max-height: 200px;
+    opacity: 1;
     text-align: center;
   }
 
