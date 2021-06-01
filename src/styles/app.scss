@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-.header {
+#app .header {
   background: $bright-blue;
   border-bottom: 1px solid $light-blue;
   width: 100%;
@@ -14,8 +14,42 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &__menu-button {
+    display: block;
+    padding: 0 .25rem;
+    border-bottom: 1px solid $blue;
+    @media (min-width: 800px) {
+      display: none;
+    }
+  }
   &__title {
     color: $dark-blue;
+  }
+  &__links {
+    display: none;
+    &.menu-open {
+      background: $bright-blue;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 100;
+    }
+    &__menu-close {
+      border-bottom: 1px solid $light-blue;
+      font-weight: 600;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      padding: 0 1rem 1rem;
+      width: 100%
+    }
+    @media (min-width: 800px) {
+      display: block;
+    }
   }
   &__link {
     border-radius: 5px;
@@ -39,40 +73,55 @@
   }
 }
 
-.content-wrapper {
+#app .body {
   display: flex;
   width: 100%;
   height: 100%;
+  .content-scrollable {
+    position: relative;
+    overflow: auto;
+    width: 100%;
+    @media (min-width: 800px) {
+      min-width: 480px;
+      width: 50%;
+    }
+  }
   .content {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     display: flex;
-    width: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     &__task {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 3rem;
+      padding: 3rem 1rem 0;
       width: 100%;
+    }
+  }
+  .description {
+    background: $bright-orange;
+    display: none;
+    width: 50%;
+    padding: 2rem 2rem 0;
+    &__header {
+      font-size: 3rem;
+    }
+    &__content {
+      line-height: 1.5;
+    }
+    @media (min-width: 800px) {
+      display: block;
     }
   }
 }
 
-.description {
-  background: $bright-orange;
-  width: 50%;
-  padding: 2rem 2rem 0;
-  &__header {
-    font-size: 3rem;
-  }
-  &__content {
-    line-height: 1.5;
-  }
-}
-
 .reset-state {
-  border-bottom: 1px solid $bright-blue;
   margin-top: 2rem;
   padding: 1rem;
   width: 100%;

@@ -28,10 +28,18 @@
                            :description crud-description}})
 
 (defn app []
-  (let [task @(subscribe [::s/task])]
+  (let [task @(subscribe [::s/task])
+        menu-open? @(subscribe [::s/menu-open?])]
     [:<>
      [:div.header
+      [:a.header__menu-button
+       {:on-click #(dispatch [::e/open-menu])}
+       "↓ " (get-in tasks [task :title])]
       [:div.header__links
+       {:class (when menu-open? "menu-open")}
+       [:div.header__links__menu-close
+        {:on-click #(dispatch [::e/close-menu])}
+        "⤬ Close"]
        (for [[task-id {:keys [title]}] tasks]
          [:a.header__link
           {:key (name task-id)
@@ -41,14 +49,15 @@
           title])]
       [:h2.header__title "Seven GUIs"]]
      (let [{:keys [title component description]} (get tasks task)]
-       [:div.content-wrapper
+       [:div.body
         [:div.description
          [:h1.description__header title]
          [:div.description__content [description]]]
-        [:div.content
-         [:div.content__task
-          [component]]
-         [:div.reset-state
-          [:button.button.reset-state__button
-           {:on-click #(dispatch [::e/reset-task-state task])}
-           "Reset State"]]]])]))
+        [:div.content-scrollable
+         [:div.content
+          [:div.content__task
+           [component]]
+          [:div.reset-state
+           [:button.button.reset-state__button
+            {:on-click #(dispatch [::e/reset-task-state task])}
+            "Reset State"]]]]])]))
