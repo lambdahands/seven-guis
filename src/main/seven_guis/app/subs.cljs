@@ -2,5 +2,7 @@
   (:require [seven-guis.app.db :as db]
             [re-frame.core :as re]))
 
+;; Subscriptions
+
 (re/reg-sub ::task #(get-in % [::db/app :selected-task]))
 (re/reg-sub ::menu-open? #(get-in % [::db/app :menu-open?]))

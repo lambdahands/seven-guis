@@ -10,6 +10,8 @@
             [seven-guis.tasks.crud.views :refer [crud crud-description]]
             [re-frame.core :refer [dispatch subscribe]]))
 
+; Map tasks to their title, component, and description text. This mapping
+; correlates to the state mapping found in the seven-guis.app.events namespace.
 (def tasks
   {:counter               {:title "Counter"
                            :component counter
@@ -26,6 +28,8 @@
    :crud                  {:title "CRUD"
                            :component crud
                            :description crud-description}})
+
+;; Root app component
 
 (defn app []
   (let [task @(subscribe [::s/task])

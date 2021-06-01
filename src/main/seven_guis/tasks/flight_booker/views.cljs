@@ -3,6 +3,8 @@
             [seven-guis.tasks.flight-booker.subs :as s]
             [re-frame.core :refer [dispatch subscribe]]))
 
+; Description text from https://eugenkiss.github.io/7guis/tasks#flight
+; HTML converted with http://html2hiccup.buttercloud.com/
 (defn flight-booker-description []
   [:p "The task is to build a frame containing a combobox "
    [:em "C"] " with the two options “one-way flight” and “return flight”, two textfields "
@@ -23,6 +25,8 @@
    [:em "T" [:sub "1"]] " as well as "
    [:em "T" [:sub "2"]] " have the same (arbitrary) date (it is implied that "
    [:em "T" [:sub "2"]] " is disabled)."])
+
+;; Main view
 
 (defn flight-booker []
   (let [trip-type      @(subscribe [::s/trip-type])

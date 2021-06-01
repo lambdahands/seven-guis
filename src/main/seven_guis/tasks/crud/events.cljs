@@ -3,6 +3,8 @@
             [re-frame.core :as re]
             [clojure.string :as str]))
 
+;;;; DB Events
+
 ;; Helpers
 
 (defn clear-name-inputs [db]
@@ -20,6 +22,7 @@
   (let [id (count (:names db))]
     (-> db
      (update :names assoc id (select-keys db [:first-name :last-name]))
+     ; Clear names on create
      (clear-name-inputs))))
 
 (defn update-name [db]
@@ -40,6 +43,7 @@
            :last-name (get-in db [:names id :last-name]))
     (-> db
      (assoc :selected-id nil)
+     ; Clear name inputs when a row is deselected
      (clear-name-inputs))))
 
 (defn update-first-name [db [_ value]]
@@ -52,11 +56,13 @@
   (assoc db :filter-prefix filter-prefix))
 
 ;; Registration
+; Use re-frame.core/path to assign the `db` parameter in event handlers to the
+; ::db/crud key in the global app DB.
 
-(re/reg-event-db ::create-name [(re/path ::db/crud)] create-name)
-(re/reg-event-db ::update-name [(re/path ::db/crud)] update-name)
-(re/reg-event-db ::delete-name [(re/path ::db/crud)] delete-name)
-(re/reg-event-db ::select-name [(re/path ::db/crud)] select-name)
-(re/reg-event-db ::update-first-name [(re/path ::db/crud)] update-first-name)
-(re/reg-event-db ::update-last-name [(re/path ::db/crud)] update-last-name)
+(re/reg-event-db ::create-name          [(re/path ::db/crud)] create-name)
+(re/reg-event-db ::update-name          [(re/path ::db/crud)] update-name)
+(re/reg-event-db ::delete-name          [(re/path ::db/crud)] delete-name)
+(re/reg-event-db ::select-name          [(re/path ::db/crud)] select-name)
+(re/reg-event-db ::update-first-name    [(re/path ::db/crud)] update-first-name)
+(re/reg-event-db ::update-last-name     [(re/path ::db/crud)] update-last-name)
 (re/reg-event-db ::update-filter-prefix [(re/path ::db/crud)] update-filter-prefix)

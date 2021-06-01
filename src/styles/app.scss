@@ -29,6 +29,7 @@
     display: none;
     &.menu-open {
       background: $bright-blue;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       padding: 2rem 1rem;
@@ -41,6 +42,7 @@
     }
     &__menu-close {
       border-bottom: 1px solid $light-blue;
+      cursor: pointer;
       font-weight: 600;
       font-size: 1.5rem;
       margin-bottom: 1rem;

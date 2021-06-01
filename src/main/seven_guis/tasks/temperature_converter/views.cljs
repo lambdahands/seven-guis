@@ -3,6 +3,8 @@
             [seven-guis.tasks.temperature-converter.subs :as s]
             [re-frame.core :refer [dispatch subscribe]]))
 
+; Description text from https://eugenkiss.github.io/7guis/tasks#temp
+; HTML converted with http://html2hiccup.buttercloud.com/
 (defn temperature-converter-description []
   [:p "The task is to build a frame containing two textfields "
    [:em "T" [:sub "C"]] " and "
@@ -19,8 +21,12 @@
    [:em "C = (F - 32) * (5/9)"] " and the dual direction is "
    [:em "F = C * (9/5) + 32"] "."])
 
+;; Helpers
+
 (defn handle-change [e from to]
   (dispatch [::e/handle-conversion (-> e .-target .-value) from to]))
+
+;; Main view
 
 (defn temperature-converter []
   (let [fahrenheit @(subscribe [::s/fahrenheit])

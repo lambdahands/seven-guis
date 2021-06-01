@@ -1,5 +1,7 @@
 (ns seven-guis.tasks.crud.db)
 
+;; State declaration
+
 (def initial-state
   {::crud {:names {}
            :selected-id nil
@@ -7,4 +9,3 @@
            :last-name ""
            :filter-prefix ""
            :filtered-names []}})
-

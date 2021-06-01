@@ -3,6 +3,8 @@
             [seven-guis.tasks.crud.subs :as s]
             [re-frame.core :refer [dispatch subscribe]]))
 
+; Description text from https://eugenkiss.github.io/7guis/tasks#counter
+; HTML converted with http://html2hiccup.buttercloud.com/
 (defn crud-description []
   [:p "The task is to build a frame containing the following elements: a textfield "
    [:em "T" [:sub "prefix"]] ", a pair of textfields "
@@ -26,6 +28,8 @@
    [:em "B" [:sub "U"]] " will not append the resulting name but instead replace the selected entry with the new name. "
    [:em "B" [:sub "D"]] " will remove the selected entry. The layout is to be done like suggested in the screenshot. In particular, "
    [:em "L"] " must occupy all the remaining space."])
+
+;; Main view
 
 (defn crud []
   (let [first-name    @(subscribe [::s/first-name])

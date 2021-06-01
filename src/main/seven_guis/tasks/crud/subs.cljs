@@ -3,6 +3,10 @@
             [clojure.string :as str]
             [re-frame.core :as re]))
 
+;;;; DB Subscriptions
+
+;; Helpers
+
 (defn filter-names [names filter-prefix]
   (if (empty? filter-prefix)
     names
@@ -10,6 +14,8 @@
               (str/starts-with? (str/lower-case last-name)
                                 (str/lower-case filter-prefix)))
             names)))
+
+;; Handlers
 
 (defn input-valid? [{:keys [first-name last-name]}]
   (not (or (empty? (str/trim first-name))
@@ -20,6 +26,8 @@
         selected-id (ffirst (filter #(= selected-id (first %)) filtered-names))
         names (sort-by first (seq filtered-names))]
     {:names names :with-selected-id? (some? selected-id)}))
+
+;; Registration
 
 (re/reg-sub ::input-valid?  #(input-valid? (::db/crud %)))
 (re/reg-sub ::list-names    #(list-names (::db/crud %)))

@@ -3,6 +3,8 @@
             [seven-guis.tasks.timer.events :as e]
             [re-frame.core :refer [dispatch subscribe]]))
 
+; Description text from https://eugenkiss.github.io/7guis/tasks#timer
+; HTML converted with http://html2hiccup.buttercloud.com/
 (defn timer-description []
   [:p "The task is to build a frame containing a gauge "
    [:em "G"] " for the elapsed time "
@@ -23,11 +25,15 @@
    [:em "R"] " will reset "
    [:em "e"] " to zero."])
 
+;; Helpers
+
 (defn progress-bar-width [elapsed interval-ms]
   (str (if-not (or (= 0 interval-ms) (>= elapsed interval-ms))
          (* 100 (/ elapsed interval-ms))
          100)
        "%"))
+
+;; Main view
 
 (defn timer- []
   (let [elapsed @(subscribe [::s/elapsed])
