@@ -17,6 +17,7 @@
     "watch:cljs": "shadow-cljs watch app",
     "watch:sass": "gulp sass:watch",
     "build:cljs": "shadow-cljs release app",
-    "build:sass": "gulp sass"
+    "build:sass": "gulp sass",
+    "build:release": "npm run build:cljs && npm run build:sass"
   }
 }
