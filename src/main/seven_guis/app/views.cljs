@@ -40,7 +40,7 @@
        {:on-click #(dispatch [::e/open-menu])}
        "↓ " (get-in tasks [task :title])]
       [:div.header__links
-       {:class (when menu-open? "header_links--menu-open")}
+       {:class (when menu-open? "header__links--menu-open")}
        [:div.header__links__menu-close
         {:on-click #(dispatch [::e/close-menu])}
         "⤬ Close"]
