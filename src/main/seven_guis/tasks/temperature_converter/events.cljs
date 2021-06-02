@@ -48,5 +48,3 @@
 (re/reg-event-db ::handle-conversion
                  [(re/path ::db/temperature-converter)]
                  handle-conversion)
-
-

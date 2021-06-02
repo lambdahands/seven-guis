@@ -43,4 +43,3 @@
       [:input.input
        {:on-change #(handle-change % :celcius :fahrenheit)
         :value celcius}]]]))
-
