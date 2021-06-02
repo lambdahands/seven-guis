@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .temperature-converter__input-group {
+  &__input-group {
     display: flex;
     flex-direction: column;
   }
-  .temperature-converter__equals {
+  &__equals {
     background: #eee;
     border-radius: 5px;
     color: #666;

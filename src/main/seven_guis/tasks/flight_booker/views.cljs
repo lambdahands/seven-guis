@@ -28,11 +28,10 @@
 
 ;; Main view
 
-(defn flight-booker []
+(defn form []
   (let [trip-type      @(subscribe [::s/trip-type])
         one-way        @(subscribe [::s/one-way])
         roundtrip      @(subscribe [::s/roundtrip])
-        flight-booked? @(subscribe [::s/flight-booked?])
         valid-inputs   @(subscribe [::s/valid-inputs])
         dates-valid?   @(subscribe [::s/dates-valid? valid-inputs])]
     [:div.flight-booker
@@ -40,7 +39,8 @@
       [:label.label "Trip Type"]
       [:div.select-wrapper
        [:select.select
-        {:on-change #(dispatch [::e/update-trip-type (-> % .-target .-value)])}
+        {:on-change #(dispatch [::e/update-trip-type (-> % .-target .-value)])
+         :value (name trip-type)}
         [:option {:value "one-way"} "One Way Flight"]
         [:option {:value "roundtrip"} "Roundtrip Flight"]]]]
      [:div.flight-booker__input-group
@@ -64,11 +64,33 @@
      [:button.button.button--confirm.flight-booker__button
       {:disabled (not dates-valid?)
        :on-click #(dispatch [::e/book-flight])}
-      "Book Flight"]
-     (when flight-booked?
-       [:p (condp = trip-type
-             :one-way
-             [:<> "You booked a one-way flight on " [:strong one-way]]
-             :roundtrip
-             [:<> "You booked a roundtrip flight from "
-              [:strong one-way] " to " [:strong roundtrip]])])]))
+      "Book Flight"]]))
+
+(defn booking-confirmation []
+  (let [trip-type      @(subscribe [::s/trip-type])
+        one-way        @(subscribe [::s/one-way])
+        roundtrip      @(subscribe [::s/roundtrip])]
+    [:div.booking-confirmation
+     [:span.booking-confirmation__check "✓"]
+     [:p.booking-confirmation__message
+      (condp = trip-type
+        :one-way
+        [:<>
+         [:p.booking-confirmation__message-text
+          "One-way flight booked for: "]
+         [:span.booking-confirmation__message-date one-way]]
+        :roundtrip
+        [:<>
+         [:p.booking-confirmation__message-text
+          "Roundtrip flight booked from:"]
+         [:span.booking-confirmation__message-date one-way]
+         [:em.booking-confirmation__message-sep " to "]
+         [:span.booking-confirmation__message-date roundtrip]])]
+     [:button.button  {:on-click #(dispatch [::e/confirm-booking])}
+      "Okay"]]))
+
+(defn flight-booker []
+  (let [flight-booked? @(subscribe [::s/flight-booked?])]
+    (if flight-booked?
+      [booking-confirmation]
+      [form])))

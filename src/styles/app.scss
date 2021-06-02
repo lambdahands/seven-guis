@@ -27,7 +27,7 @@
   }
   &__links {
     display: none;
-    &.menu-open {
+    &--menu-open {
       background: $bright-blue;
       cursor: pointer;
       display: flex;

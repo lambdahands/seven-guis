@@ -1,7 +1,6 @@
 (ns seven-guis.tasks.crud.events
   (:require [seven-guis.tasks.crud.db :as db]
-            [re-frame.core :as re]
-            [clojure.string :as str]))
+            [re-frame.core :as re]))
 
 ;;;; DB Events
 
@@ -9,12 +8,6 @@
 
 (defn clear-name-inputs [db]
   (assoc db :first-name "" :last-name ""))
-
-(defn filter-names [names filter-prefix]
-  (filter (fn [[_ {:keys [last-name]}]]
-            (str/starts-with? (str/lower-case last-name)
-                              (str/lower-case filter-prefix)))
-          names))
 
 ;; Handlers
 

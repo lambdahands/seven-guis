@@ -7,5 +7,4 @@
            :selected-id nil
            :first-name ""
            :last-name ""
-           :filter-prefix ""
-           :filtered-names []}})
+           :filter-prefix ""}})

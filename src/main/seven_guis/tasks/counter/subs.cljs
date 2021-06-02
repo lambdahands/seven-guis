@@ -4,4 +4,4 @@
 
 ;; Subscriptions
 
-(re/reg-sub ::counter #(::db/counter %))
+(re/reg-sub ::counter ::db/counter)

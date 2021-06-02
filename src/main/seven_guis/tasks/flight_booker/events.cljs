@@ -18,6 +18,9 @@
 (defn book-flight [db]
   (assoc db :flight-booked? true))
 
+(defn confirm-booking []
+  (::db/flight-booker db/initial-state))
+
 ;; Registration
 ; Use re-frame.core/path to assign the `db` parameter in event handlers to the
 ; ::db/flight-booker key in the global app DB.
@@ -26,3 +29,4 @@
 (re/reg-event-db ::update-one-way   [(re/path ::db/flight-booker)] update-one-way)
 (re/reg-event-db ::update-roundtrip [(re/path ::db/flight-booker)] update-roundtrip)
 (re/reg-event-db ::book-flight      [(re/path ::db/flight-booker)] book-flight)
+(re/reg-event-db ::confirm-booking  [(re/path ::db/flight-booker)] confirm-booking)
