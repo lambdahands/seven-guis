@@ -55,8 +55,7 @@
       [:label.label "Return Date (MM/DD/YYYY)"]
       [:input.input.flight-booker__input
        {:type "text"
-        :class (when (and (not= :roundtrip trip-type)
-                          (not (:roundtrip valid-inputs)))
+        :class (when (not (:roundtrip valid-inputs))
                  "flight-booker__input--invalid")
         :disabled (not= :roundtrip trip-type)
         :on-change #(dispatch [::e/update-roundtrip (-> % .-target .-value)])
