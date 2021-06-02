@@ -64,9 +64,10 @@
       "Reset"]]]))
 
 (def timer
+  ; Get timer-ch referebce
   (let [timer-ch (subscribe [::s/timer-ch])]
     (with-meta
      timer-
-     {:component-did-mount #(when-not @timer-ch
-                              (dispatch [::e/reset-timer]))})))
-
+     ; Create new timer if one doesn't exist before mounting
+     {:component-will-mount #(when-not @timer-ch
+                               (dispatch [::e/reset-timer]))})))
