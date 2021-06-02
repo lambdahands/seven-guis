@@ -13,6 +13,14 @@ distinct areas.
 
 The `main` branch build is hosted at: https://pax-seven-guis.netlify.app
 
+## Installation
+
+To install the project's dependencies, run:
+
+```sh
+npm install
+```
+
 ## Building
 
 To build the application for release, run:
